@@ -3,7 +3,9 @@
 tiburcio:
   name: Tiburcio Emengardo
   email: tiburcio@email.com
+  password_digest: <%= User.digest('password') %>
 
 confucio:
   name: Sebastioncio Confucio
   email: conf@eami.com
+  password_digest: <%= User.digest('password') %>
