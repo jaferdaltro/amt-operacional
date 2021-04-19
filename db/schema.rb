@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_114553) do
+ActiveRecord::Schema.define(version: 2021_04_19_120438) do
+
+  create_table "check_list_items", force: :cascade do |t|
+    t.string "description"
+    t.boolean "beggin_check"
+    t.boolean "end_check"
+    t.integer "check_list_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["check_list_id"], name: "index_check_list_items_on_check_list_id"
+  end
+
+  create_table "check_lists", force: :cascade do |t|
+    t.string "title"
+    t.integer "beggin_km"
+    t.integer "end_km"
+    t.integer "user_id", null: false
+    t.datetime "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_check_lists_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -21,4 +42,6 @@ ActiveRecord::Schema.define(version: 2021_03_31_114553) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "check_list_items", "check_lists"
+  add_foreign_key "check_lists", "users"
 end
