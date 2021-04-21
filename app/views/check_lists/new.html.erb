@@ -1,0 +1,50 @@
+<div class='card'>
+  <div class="card-header d-flex justify-content-between">
+    <select name="vehicle_id">
+      <%= @vehicles.each do |vehicle| %>
+        <option value="<%= vehicle.id %>", class:'dropdown-item'>VTR-<%= vehicle.vtr_number %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="card-body">
+    <%= form_with(model: @check_list, local: true) do |f| %>
+      <div class="input-group mb-4">
+        <%= f.number_field :beggin_km, class: 'form-control', placeholder: 'Quilometragem inicial' %>
+        <div class="input-group-append">
+          <%= f.submit "OK", class: 'btn btn-primary input-group-btn' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @check_list_items.each do |item| %>
+      <% if item.beggin_check %>  
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between">
+            <span>
+              <%= item.description %>
+            </span>
+              <%= link_to '#', class: 'btn-btn-dark', data: { reflex: 'click->CheckListItem#mark_bad', id: item.id} do%> 
+                <i class= 'fa fa-times'></i>
+              <% end %>
+          </div>
+        </li>
+      <% else %>
+         <li class="list-group-item">
+          <div class="d-flex justify-content-between">
+            <span>
+              <%= item.description %>
+            </span>
+              <%= link_to '#', class: 'btn-btn-success', data: { reflex: 'click->CheckListItem#mark_good', id: item.id} do%> 
+                <i class= 'fa fa-check'></i>
+              <% end %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+   
+  </ul>
+</div>
+

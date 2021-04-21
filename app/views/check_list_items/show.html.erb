@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @check_item.description %>
+</p>
+
+<p>
+  <b>Ok:</b>
+  <%= @check_item.ok %>
+</p>
+
+<p>
+  <b>Verified at:</b>
+  <%= @check_item.verified_at %>
+</p>
+
+<p>
+  <b>Check list:</b>
+  <%= @check_item.check_list %>
+</p>
+
+
+<%= link_to 'Edit', edit_check_list_check_item_path(@check_item.check_list, @check_item) %> |
+<%= link_to 'Back', check_list_check_items_path(@check_item.check_list) %>

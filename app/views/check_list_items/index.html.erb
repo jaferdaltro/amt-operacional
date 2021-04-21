@@ -1,0 +1,29 @@
+<h1>Listing check_items</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Ok</th>
+    <th>Verified at</th>
+    <th>Check list</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @check_list_items.each do |check_list_item| %>
+  <tr>
+    <td><%= check_list_item.description %></td>
+    <td><%= check_list_item.ok %></td>
+    <td><%= check_list_item.verified_at %></td>
+    <td><%= check_list_item.check_list %></td>
+    <td><%= link_to 'Show', [check_list_item.check_list, check_list_item] %></td>
+    <td><%= link_to 'Edit', edit_check_list_check_list_item_path(check_list_item.check_list, check_list_item) %></td>
+    <td><%= link_to 'Destroy', [check_list_item.check_list, check_list_item], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Check item', new_check_list_item_path(params[:check_list_id]) %>
