@@ -1,21 +1,51 @@
-<nav>
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed"
-                data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1"
-                aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
-          id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav navbar-right">
-        <% if logged_in? %>
-          <li><%= link_to "Log out", logout_path, method: :delete %></li>
-           <li><%= link_to "Profile", current_user %></li>
-        <% end %>
-      </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-light" id= 'menu'>
+  <%= link_to 'AMT - OPERACIONAL', user_path(current_user), class:"navbar-brands", id: 'logo' %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to 'Viaturas', cars_path, class:"nav-link" %>
+      </li>
+
+      <% if current_user.admin? %>
+       <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Configuração de Viaturas
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "Nova Viatura", new_car_path, class:"dropdown-item"  %>
+            </div>
+        </li>
+         
+      <% end %>
+
+
+      <!--
+      <li class="nav-item dropdown">
+      
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+     --> 
+      
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+      <% if logged_in? %>
+        <li class="nav-item">
+          <%= link_to 'Loggoff', logout_path, method: :delete,  class:"mr-sm-2" %>
+        </li>
+      <% end %>
+      
+    </div>
+  </div>
 </nav>

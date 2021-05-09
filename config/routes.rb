@@ -7,5 +7,15 @@ Rails.application.routes.draw do
   post  '/login',     to: 'sessions#create'
   delete  '/logout', to: 'sessions#destroy'
 
-  resources :users
+  get 'welcome/index'
+
+  resources :users, only: [:new, :create, :show]
+  resources :cars do
+    resources :items do
+      member do
+        patch :ready
+        patch :unready
+      end
+   end
+  end
 end

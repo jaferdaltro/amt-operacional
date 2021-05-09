@@ -1,0 +1,33 @@
+<h1 class='text-center'>Escolha uma viatura</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>
+              <th> VTR</th>
+              <th>PLACA</th>
+              <th>MODELO</th>
+              <th>CHECKLIST</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% @cars.each do |car| %>
+          <tr>
+              <% if current_user.admin? %>
+                <td><%= link_to car.vtr, edit_car_path(car) %></td>
+              <% else %>
+                <td><%= car.vtr %></td>
+              <% end %>
+              <td><%= car.licence_plate %></td>
+              <td><%= car.model %></td>
+              <td>
+                <%= link_to car_path(car) do %>
+                  <i class='fas fa-check'></i>
+                <% end %>
+
+              </td>
+          </tr>
+          <% end %>
+      </tbody>
+  </table>
+</div>
