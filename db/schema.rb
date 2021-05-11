@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_102407) do
+ActiveRecord::Schema.define(version: 2021_05_10_234246) do
 
   create_table "cars", force: :cascade do |t|
     t.string "owner", limit: 35
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_102407) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "mileage", default: 0
+    t.boolean "busy", default: false
   end
 
   create_table "checklists", force: :cascade do |t|
@@ -34,6 +35,15 @@ ActiveRecord::Schema.define(version: 2021_05_07_102407) do
     t.index ["car_id"], name: "index_checklists_on_car_id"
     t.index ["item_id"], name: "index_checklists_on_item_id"
     t.index ["job_id"], name: "index_checklists_on_job_id"
+  end
+
+  create_table "frequencies", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "login_time"
+    t.datetime "logout_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_frequencies_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -73,6 +83,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_102407) do
   add_foreign_key "checklists", "cars"
   add_foreign_key "checklists", "items"
   add_foreign_key "checklists", "jobs"
+  add_foreign_key "frequencies", "users"
   add_foreign_key "items", "cars"
   add_foreign_key "jobs", "services"
   add_foreign_key "jobs", "users"

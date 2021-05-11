@@ -7,21 +7,29 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <%= link_to 'Viaturas', cars_path, class:"nav-link" %>
+        
       </li>
 
-      <% if current_user.admin? %>
-       <li class="nav-item dropdown">
+
+    </ul>
+        <li class="nav navbar-nav navbar-right">
+          <%= link_to 'Viaturas', cars_path, class:"nav-link" %>
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Configuração de Viaturas
+              <%= @current_user.email %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <%= link_to "Nova Viatura", new_car_path, class:"dropdown-item"  %>
+              <%= link_to 'Perfil', user_path(current_user), class:"dropdown-item"  %>
+              <div class="dropdown-divider"></div>
+              <%= link_to 'sair', logout_path, method: :delete, data: {confirm: 'Tem certeza ?'}, class:"dropdown-item" %>
             </div>
+            
+            
+          </li>
         </li>
-         
-      <% end %>
-
+      
+  </div>
+</nav>
 
       <!--
       <li class="nav-item dropdown">
@@ -37,15 +45,3 @@
         </div>
       </li>
      --> 
-      
-    </ul>
-    <div class="form-inline my-2 my-lg-0">
-      <% if logged_in? %>
-        <li class="nav-item">
-          <%= link_to 'Loggoff', logout_path, method: :delete,  class:"mr-sm-2" %>
-        </li>
-      <% end %>
-      
-    </div>
-  </div>
-</nav>

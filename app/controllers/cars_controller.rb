@@ -1,13 +1,11 @@
 class CarsController < ApplicationController
   before_action :find_car, only: [:destroy, :update, :edit, :show]
-  before_action :find_item, only: [:ready, :unready]
-
+  
   def index
     @cars = Car.all
   end
 
   def show
-    @car.mileage
   end
   
   
@@ -19,7 +17,7 @@ class CarsController < ApplicationController
   end
 
   def create
-    @car = Car.new(car)
+    @car = Car.new(car_params)
     if @car.save
       flash[:notice] = "Viatura criada com sucesso"
       redirect_to cars_path
@@ -39,7 +37,7 @@ class CarsController < ApplicationController
   
 
   def update
-    if @car.update(car)
+    if @car.update(car_params)
       flash[:success] = "Viatura atualizada com sucesso!"
       redirect_to cars_path
     else
@@ -51,22 +49,13 @@ class CarsController < ApplicationController
     @cars = Car.all
   end
 
-  def ready
-    @car.items(params[:id]).update_attribute(:ready, true)
-    redirect_to car_path
-  end
-  
-  def unready
-    @item.update_attribute(:ready, false)
-    # @car.items(params[:id]).update_attribute(:ready, false)
-    redirect_to car_path
-  end
+
   
   
   private
-    def car
+    def car_params
       params.require(:car).permit(:owner, :licence_plate, :vtr, :brand, :model, :mileage,
-      items_attributes: [:id, :description, :ready, :_destroy])
+          items_attributes: [:id, :description, :car_id, :ready, :_destroy])
     end
     
     def find_car

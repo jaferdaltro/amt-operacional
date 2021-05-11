@@ -7,27 +7,47 @@
               <th> VTR</th>
               <th>PLACA</th>
               <th>MODELO</th>
-              <th>CHECKLIST</th>
+              <% if current_user.admin? %>
+                <th>AÇÕES</th>
+              <% else %>
+                <th>CHECKLIST</th>
+              <% end %>
           </tr>
       </thead>
       <tbody>
-          <% @cars.each do |car| %>
+          <% @cars.each do |car, item| %>
           <tr>
-              <% if current_user.admin? %>
-                <td><%= link_to car.vtr, edit_car_path(car) %></td>
-              <% else %>
-                <td><%= car.vtr %></td>
-              <% end %>
-              <td><%= car.licence_plate %></td>
-              <td><%= car.model %></td>
-              <td>
-                <%= link_to car_path(car) do %>
-                  <i class='fas fa-check'></i>
+                <% if current_user.admin? %>
+                  <td><%= car.vtr %></td>
+                  <td><%= car.licence_plate %></td>
+                  <td><%= car.model %></td>
+                  <td>
+                    <%= link_to car_path(car), class:"btn btn-success btn-circle" do %>
+                      <i class='fas fa-check'></i>
+                    <% end %>
+                    <%= link_to edit_car_path(car), class:"btn btn-warning btn-circle" do %>
+                      <i class='fas fa-edit'></i>
+                    <% end %>
+                    <%= link_to car_path(car), method: :delete, data: {confirm: 'Tem certeza ?'}, class:"btn btn-danger btn-circle" do %>
+                      <i class='fas fa-trash'></i>
+                    <% end %>
+                <% else %>
+                  <% unless car.busy? %>
+                    <td><%= car.vtr %></td>
+                    <td><%= car.licence_plate %></td>
+                    <td><%= car.model %></td>
+                    <td>
+                      <%= link_to car_path(car), class:"btn btn-success btn-circle" do %>
+                        <i class='fas fa-check'></i>
+                      <% end %>
+                    </td>
+                  <% end %>  
                 <% end %>
-
-              </td>
           </tr>
           <% end %>
       </tbody>
   </table>
+    <% if current_user.admin? %>
+      <%= link_to 'Nova Viatura', new_car_path, class: 'btn btn-primary' %>
+    <% end %>
 </div>

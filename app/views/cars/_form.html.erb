@@ -4,14 +4,14 @@
   <%= f.input :owner, label: 'Proprietário' %>
   <%= f.input :brand, label: 'Marca' %>
   <%= f.input :model, label: 'Modelo' %>
-  <h3>Items</h3>
+ 
   <div id='items'>
-    <% f.simple_fields_for :items do |item| %>
-      <%= render partial: 'item_fields', locals: { f: item } %>
+    <%= f.simple_fields_for :items do |item| %>
+      <%= render 'item_fields', f: item  %>
     <% end %>
     <div class="links">
-      <%= link_to_add_association 'Adicionar Item', f, :items %>
+      <%= link_to_add_association 'adicionar item', f, :items %>
     </div>
   </div>
-<%= f.submit "Criar Viatura" %>
+<%= f.submit 'Save' %>
 <% end %>
