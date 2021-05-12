@@ -19,7 +19,6 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     if @car.save
-      flash[:notice] = "Viatura criada com sucesso"
       redirect_to cars_path
     else
       render 'new'
@@ -38,7 +37,6 @@ class CarsController < ApplicationController
 
   def update
     if @car.update(car_params)
-      flash[:success] = "Viatura atualizada com sucesso!"
       redirect_to cars_path
     else
       render 'edit'

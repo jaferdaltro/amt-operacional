@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   # get root_path
   def new
+    if current_user
+      destroy
+    end
   end
 
   # post login_path
