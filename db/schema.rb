@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_18_172827) do
+ActiveRecord::Schema.define(version: 2021_05_14_024610) do
 
   create_table "cars", force: :cascade do |t|
     t.string "owner", limit: 35
@@ -35,18 +35,6 @@ ActiveRecord::Schema.define(version: 2021_05_18_172827) do
     t.index ["car_id"], name: "index_checklists_on_car_id"
     t.index ["item_id"], name: "index_checklists_on_item_id"
     t.index ["job_id"], name: "index_checklists_on_job_id"
-  end
-
-  create_table "day_records", force: :cascade do |t|
-    t.date "reference_date"
-    t.text "observarions"
-    t.integer "work_day", limit: 2
-    t.integer "missed_day", limit: 2
-    t.integer "medical_certificate"
-    t.integer "user_id"
-    t.integer "calculated_hours"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "frequencies", force: :cascade do |t|
@@ -83,15 +71,6 @@ ActiveRecord::Schema.define(version: 2021_05_18_172827) do
   create_table "services", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_services_on_user_id"
-  end
-
-  create_table "time_records", force: :cascade do |t|
-    t.datetime "time"
-    t.integer "day_records_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -116,5 +95,4 @@ ActiveRecord::Schema.define(version: 2021_05_18_172827) do
   add_foreign_key "items", "cars"
   add_foreign_key "jobs", "services"
   add_foreign_key "jobs", "users"
-  add_foreign_key "services", "users"
 end
