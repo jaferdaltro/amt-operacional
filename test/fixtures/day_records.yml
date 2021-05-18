@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reference_date: 2021-05-18
+  observarions: MyText
+  work_day: 1
+  missed_day: 1
+  medical_certificate: 1
+  user_id: 1
+  calculated_hours: 1
+
+two:
+  reference_date: 2021-05-18
+  observarions: MyText
+  work_day: 1
+  missed_day: 1
+  medical_certificate: 1
+  user_id: 1
+  calculated_hours: 1

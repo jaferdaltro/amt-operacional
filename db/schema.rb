@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_234246) do
+ActiveRecord::Schema.define(version: 2021_05_18_172827) do
 
   create_table "cars", force: :cascade do |t|
     t.string "owner", limit: 35
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 2021_05_10_234246) do
     t.index ["job_id"], name: "index_checklists_on_job_id"
   end
 
+  create_table "day_records", force: :cascade do |t|
+    t.date "reference_date"
+    t.text "observarions"
+    t.integer "work_day", limit: 2
+    t.integer "missed_day", limit: 2
+    t.integer "medical_certificate"
+    t.integer "user_id"
+    t.integer "calculated_hours"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "frequencies", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "login_time"
@@ -61,11 +73,23 @@ ActiveRecord::Schema.define(version: 2021_05_10_234246) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.boolean "active", default: false
     t.index ["service_id"], name: "index_jobs_on_service_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_services_on_user_id"
+  end
+
+  create_table "time_records", force: :cascade do |t|
+    t.datetime "time"
+    t.integer "day_records_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -77,6 +101,11 @@ ActiveRecord::Schema.define(version: 2021_05_10_234246) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.string "registration"
+    t.integer "score", default: 0
+    t.boolean "agent", default: false
+    t.boolean "supervisor", default: false
+    t.string "alias"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
@@ -87,4 +116,5 @@ ActiveRecord::Schema.define(version: 2021_05_10_234246) do
   add_foreign_key "items", "cars"
   add_foreign_key "jobs", "services"
   add_foreign_key "jobs", "users"
+  add_foreign_key "services", "users"
 end

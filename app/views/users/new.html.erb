@@ -1,23 +1,32 @@
 <% provide(:title, 'Sign up') %>
 <h1>Novo Usuário</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @user, local: true) do |f| %>
+
+  
+    <%= simple_form_for @user do |f| %>
     <%= render 'shared/error_messages' %>
-      <%= f.label :name, "Nome" %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.input :name, label: "Nome" %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.input :email %>
+      
 
-      <%= f.label :password, "Senha" %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.input :password, label: "Senha" %>
 
-      <%= f.label :password_confirmation, "Confirmação da Senha" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.input :password_confirmation, label: "Confirmação da Senha" %>
+      
+      <%= f.input :registration, label: "Matrícula" %>
+      
+      <%= f.input :alias, label: "Nome de Guerra" %>
+     
+     
+      <%= f.input :agent, label: " Agente de Trânsito", as: :boolean  %>
+   
+      <%= f.input :supervisor, label: " Supervisor", as: :boolean  %>
+      
+      <%= f.input :admin, label: " Administrador", as: :boolean %>
+     
+      
 
-      <%= f.submit "Criar Conta", class: "btn btn-primary" %>
+      <%= f.submit "Criar Conta" %>
     <% end %>
-  </div>
-</div>
+  

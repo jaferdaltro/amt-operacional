@@ -1,12 +1,17 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, @user.alias) %>
 
-<aside class="col-md-4">
+<aside class="col-md-5">
     <section class="user_info">
-    
-      <h2>
-        Olá 
-        <%= @user.name %>, você logou às 6:00
-      </h2>
+      <p><%= @user.registration %> - <%= @user.name %></p>
+      <p><%= Date.today.strftime("%d/%m/%Y") %></p>
+
+
+   
+
+      
+  
+      
+   
     </section>
   </aside>
 

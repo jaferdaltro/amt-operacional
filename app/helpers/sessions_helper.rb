@@ -17,9 +17,17 @@ module SessionsHelper
   end
 
   def log_out
+    if (current_user.jobs.any?)
+      current_user.jobs.last.update_attribute(:end_at, Time.zone.now)  
+      current_user.jobs.last.update_attribute(:active, false) 
+    end  
     reset_session
     current_user = nil
   end
+
+ 
+  
+
   
   
   
