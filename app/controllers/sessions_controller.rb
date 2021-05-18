@@ -1,9 +1,7 @@
 class SessionsController < ApplicationController
-  # get root_path
+  # get login_path
   def new
-    if current_user
-      destroy
-    end
+  
   end
 
   # post login_path
@@ -11,6 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       reset_session
+      remember user
       log_in user
       flash.now[:success] = "Login realizado com sucesso"
       redirect_to user
@@ -21,8 +20,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
-    redirect_to root_url
+    log_out if logged_in?
+    redirect_to login_path
   end
   
   

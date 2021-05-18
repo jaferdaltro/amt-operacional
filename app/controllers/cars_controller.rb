@@ -1,4 +1,5 @@
 class CarsController < ApplicationController
+  before_action :logged_in_user
   before_action :find_car, only: [:destroy, :update, :edit, :show]
   
   def index

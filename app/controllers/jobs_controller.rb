@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  before_action :logged_in_user
   before_action :find_job, only: [:point, :finish_job]
   
   def point
