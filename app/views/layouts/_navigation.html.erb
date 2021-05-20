@@ -28,6 +28,8 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <% if current_user.agent? %>
             <%= @current_user.alias %>
+          <% elsif current_user.name.nil? && current_user.alias.nil? %>
+            Perfil
           <% else %>
             <%= @current_user.name %>
           <% end %>
