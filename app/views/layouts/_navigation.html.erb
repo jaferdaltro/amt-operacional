@@ -16,7 +16,7 @@
       
    
       <li class="nav-item active">
-        <%= link_to 'PONTO', point_path,  class:'nav-link' %>
+        <%= link_to 'PONTO', switch_path,  class:'nav-link' %>
       </li>
       
 
@@ -31,7 +31,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to 'Perfil', user_path(current_user), class:"dropdown-item"  %>
           <div class="dropdown-divider"></div>
-          <%= link_to 'sair', logout_path, method: :delete, data: {confirm: 'Tem certeza ?'}, class:"dropdown-item" %>
+          <%= link_to 'sair', logout_path, method: :delete, data: {confirm: 'Tem certeza ? Quando você sai, automaticamente seu PONTO é ENCERRADO.'}, class:"dropdown-item" %>
         </div>
       </li>
     </ul>

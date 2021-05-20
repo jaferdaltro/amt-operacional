@@ -2,16 +2,12 @@
 
 <aside class="col-md-5">
     <section class="user_info">
-      <p><%= @user.registration %> - <%= @user.name %></p>
-      <p><%= Date.today.strftime("%d/%m/%Y") %></p>
+      <p>Email <strong><%= @user.email %></strong></p>
+      <p>Matrícula <strong><%= @user.registration %></strong> Nome <strong><%= @user.name %></strong></p>
+
+      <%= link_to 'Editar', edit_user_path(@user), class: 'btn btn-primary' %>
 
 
-   
-
-      
-  
-      
-   
     </section>
   </aside>
 

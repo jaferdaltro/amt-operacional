@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_18_204120) do
+ActiveRecord::Schema.define(version: 2021_05_20_135558) do
 
   create_table "cars", force: :cascade do |t|
     t.string "owner", limit: 35
@@ -22,19 +22,22 @@ ActiveRecord::Schema.define(version: 2021_05_18_204120) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "mileage", default: 0
     t.boolean "busy", default: false
+    t.integer "status", default: 0
+    t.integer "kind", default: 0
+    t.integer "fuel", default: 0
+    t.integer "operation", default: 0
   end
 
-  create_table "checklists", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "job_id", null: false
-    t.string "beggin"
-    t.string "end"
+  create_table "clocks", force: :cascade do |t|
+    t.integer "service_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "car_id"
-    t.index ["car_id"], name: "index_checklists_on_car_id"
-    t.index ["item_id"], name: "index_checklists_on_item_id"
-    t.index ["job_id"], name: "index_checklists_on_job_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.boolean "active", default: false
+    t.index ["service_id"], name: "index_clocks_on_service_id"
+    t.index ["user_id"], name: "index_clocks_on_user_id"
   end
 
   create_table "frequencies", force: :cascade do |t|
@@ -53,19 +56,8 @@ ActiveRecord::Schema.define(version: 2021_05_18_204120) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "car_id"
     t.datetime "ready_at"
+    t.text "obeservation", limit: 50
     t.index ["car_id"], name: "index_items_on_car_id"
-  end
-
-  create_table "jobs", force: :cascade do |t|
-    t.integer "service_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.boolean "active", default: false
-    t.index ["service_id"], name: "index_jobs_on_service_id"
-    t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -91,12 +83,9 @@ ActiveRecord::Schema.define(version: 2021_05_18_204120) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "checklists", "cars"
-  add_foreign_key "checklists", "items"
-  add_foreign_key "checklists", "jobs"
+  add_foreign_key "clocks", "services"
+  add_foreign_key "clocks", "users"
   add_foreign_key "frequencies", "users"
   add_foreign_key "items", "cars"
-  add_foreign_key "jobs", "services"
-  add_foreign_key "jobs", "users"
   add_foreign_key "services", "users"
 end

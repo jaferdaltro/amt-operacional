@@ -1,27 +1,18 @@
-<% @services.each do |service| %>
- <h2 class='text-center'>Serviço de <%= l(service.created_at, format: :day) %></h2>
+
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">Colaborador</th>
-        <th scope="col">Chegada</th>
-        <th scope="col">Saída</th>
-        
-        
+        <th scope="col">Dia - Início do Serviço</th>
       </tr>
     </thead>
     <tbody>
-      <% service.jobs.each do |job| %>
+      <% @services.each do |service| %>
       <tr>
-        <td><%= job.user.name %></td>
-        <td><%= l job.start_at, format: :short %></td>
-        <td><%= job.end_at.nil? ? '' : l(job.start_at, format: :short)  %></td>
-        
+        <td><%= link_to l(service.created_at, format: :short), service_path(service)%></td>
       </tr>
       <% end %>
     </tbody>
   </table>
-<% end %>
   
 
   

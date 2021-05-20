@@ -1,0 +1,22 @@
+<h2 class='text-center'>Serviço de <%= l(@service.created_at, format: :day) %></h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Colaborador</th>
+        <th scope="col">Chegada</th>
+        <th scope="col">Saída</th>
+        
+        
+      </tr>
+    </thead>
+    <% @clocks.each do |clock| %>
+      <tbody>
+        <tr>
+          <td><%= clock.user.name %></td>
+          <td><%= l clock.start_at, format: :short %></td>
+          <td><%= clock.end_at.nil? ? '' : l(clock.end_at, format: :short)  %></td>
+          
+        </tr>
+      </tbody>
+    <% end %>
+  </table>

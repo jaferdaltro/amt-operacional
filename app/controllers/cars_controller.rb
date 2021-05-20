@@ -1,15 +1,16 @@
 class CarsController < ApplicationController
   before_action :logged_in_user
   before_action :find_car, only: [:destroy, :update, :edit, :show]
-  
+  before_action :find_item, only: [:show]  
+
+
   def index
     @cars = Car.all
   end
 
   def show
   end
-  
-  
+
 
   def new
     @car = Car.new
@@ -44,12 +45,6 @@ class CarsController < ApplicationController
     end
   end
 
-  def list
-    @cars = Car.all
-  end
-
-
-  
   
   private
     def car_params
@@ -62,7 +57,7 @@ class CarsController < ApplicationController
     end
 
     def find_item
-      @item = @car.items(params[:id])
+      @items = @car.items.find_by(car_id: params[:id])
     end
     
 

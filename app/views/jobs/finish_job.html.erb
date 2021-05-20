@@ -1,5 +1,0 @@
-<% if current_user.jobs.last.active? %>
-  <%=  link_to 'Finalizar Ponto', finish_job_path, method: :put, class: 'btn btn-warning'  %>
-<% else %>
-  <p>Ponto finalizado há <%= @job.end_at.nil? ? 'ninguém sabe': time_ago_in_words(@job.end_at)  %></p>
-<% end %>

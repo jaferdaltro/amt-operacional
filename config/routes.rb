@@ -12,17 +12,12 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
 
-  get 'point', to: 'jobs#point'
-  put 'start_job', to: 'jobs#start_job'
-  put 'finish_job', to: 'jobs#finish_job'
-
+  get 'switch', to: 'clocks#switch_clock'
+  put 'start_clock', to: 'clocks#start_clock'
+  put 'finish_clock', to: 'clocks#finish_clock'
  
-
-
- 
-
-  resources :services, only: [:index, :create, :new]
-  resources :users, only: [:new, :create, :show, :index]
+  resources :services, only: [:index, :create, :new, :show]
+  resources :users, only: [:new, :create, :show, :index, :edit, :update]
   resources :cars do
     resources :items do
       member do

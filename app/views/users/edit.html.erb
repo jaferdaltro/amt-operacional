@@ -1,0 +1,18 @@
+  <%= simple_form_for @user do |f| %>
+  <%= render 'shared/error_messages' %>
+    <%= f.input :name, label: "Nome" %>
+
+    <%= f.input :email %>
+    
+
+    <%= f.input :password, label: "Senha" %>
+
+    <%= f.input :password_confirmation, label: "Confirmação da Senha" %>
+    
+    
+    <%= f.input :alias, label: "Nome de Guerra" %>
+    
+
+    <%= f.submit "Enviar", class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', :back, class: 'btn btn-primary' %>
+  <% end %>

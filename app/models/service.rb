@@ -1,5 +1,5 @@
 class Service < ApplicationRecord
-  has_many :jobs
+  has_many :clocks
   has_many :cars
   has_many :users
   attr_accessor :team

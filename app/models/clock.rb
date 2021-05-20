@@ -1,4 +1,4 @@
-class Job < ApplicationRecord
+class Clock < ApplicationRecord
   belongs_to :service, optional: true
   belongs_to :user
 
@@ -11,17 +11,6 @@ class Job < ApplicationRecord
     else
       Service.create
     end
-  end
-
-  def active
-    active = true
-    service_id = Service.last.nil? ? Service.create : Service.last
-  end
-  
-
-  def inactive
-    active = false
-    service_id = nil
   end
 
 
