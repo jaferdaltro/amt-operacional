@@ -5,7 +5,7 @@ class CarsController < ApplicationController
 
 
   def index
-    @cars = Car.all
+    @cars = Car.order(:desc)
   end
 
   def show

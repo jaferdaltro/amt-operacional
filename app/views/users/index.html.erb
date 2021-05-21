@@ -1,25 +1,29 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Matrícula</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Email</th>
-      <th scope="col">Nome de Guerra</th>
-      <th scope="col">Pontuação</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-    <tr>
-      <td><%= user.id %></td>
-      <td><%= user.registration %></td>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.alias %></td>
-      <td><%= user.score %></td>
-    </tr>
-    <% end %> 
-  </tbody>
-</table>
+<div class="card">
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Matrícula</th>
+          <th scope="col">Nome de Guerra</th>
+          <th scope="col">Email</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Pontuação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.registration %></td>
+          <td><%= user.alias %></td>
+          <td><%= user.email %></td>
+          <td><%= user.name %></td>
+          <td><%= user.score %></td>
+        </tr>
+        <% end %> 
+      </tbody>
+    </table>
+  </div>
+</div>
 

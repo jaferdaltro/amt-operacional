@@ -1,11 +1,15 @@
-  <%= simple_form_for @user do |f| %>
-  <%= render 'shared/error_messages' %>
-    <%= f.input :name, label: "Nome", hint: 'Insira seu nome completo.' %>
-    <%= f.input :email, label: 'email', hint: 'ATENÇÃO o email é utilizado para o acesso.' %>
-    <%= f.input :password, label: "Senha", hint: 'modifique regularmente sua senha e a mantenha segura' %>
-    <%= f.input :password_confirmation, label: "Confirmação da Senha" %>
-    <%= f.input :alias, label: "Nome de Guerra" %>
-    <%= f.input :registration, label: "Matrícula", hint: 'Insira corretamente o seu número de matrícula, pois esse campo será removido em breve para edição.' %>
-    <%= f.submit "Enviar", class: 'btn btn-primary' %>
-    <%= link_to 'Cancelar', :back, class: 'btn btn-primary' %>
-  <% end %>
+<div class="card">
+  <div class="card-body">   
+    <%= simple_form_for @user do |f| %>
+    <%= render 'shared/error_messages' %>
+      <%= f.input :name, label: "Nome", hint: 'Insira seu nome completo.' %>
+      <%= f.input :email, label: 'email', hint: 'ATENÇÃO o email é utilizado para o acesso.' %>
+      <%= f.input :password, label: "Senha", hint: 'modifique regularmente sua senha e a mantenha segura' %>
+      <%= f.input :password_confirmation, label: "Confirmação da Senha" %>
+      <%= f.input :alias, label: "Nome de Guerra" %>
+      <%= f.input :registration, label: "Matrícula", hint: 'Insira corretamente o seu número de matrícula, pois esse campo será removido em breve para edição.' %>
+      <%= f.submit "Enviar", class: 'btn btn-primary' %>
+      <%= link_to 'Cancelar', :back, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

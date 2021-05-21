@@ -1,0 +1,22 @@
+<div class="text-center mt-4"><%= @article.title %></div>
+
+
+            <div class="card text-center">
+             
+                <div class="card-body ">
+                        <p class="card-text"><%= simple_format(@article.description) %></p>
+                        <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+                            <%=link_to "Edit", edit_article_path(@article), class:"btn btn-outline-warning"  %>
+                            <%=link_to "Delete", article_path(@article), method: :delete, class:"btn btn-outline-danger"  %>
+                        <% end %>
+                </div>
+
+                <div class="card-footer text-muted">
+                   <small>
+                        Criado por <%= @article.user.name %>
+                        Há <%= time_ago_in_words(@article.created_at) %> atrás.
+                        Editados <%= time_ago_in_words(@article.updated_at) %> atrás.
+                   </small>
+                </div>
+
+            </div>

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       remember user
       log_in user
       flash.now[:success] = "Login realizado com sucesso"
-      redirect_to user
+      redirect_to root_path
     else
       flash.now[:danger] = "Combinação Email/Senha inválida"
       render 'new'

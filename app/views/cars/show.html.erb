@@ -1,32 +1,30 @@
 <%= provide(:title, @car.vtr) %>
+<div class="card">
+  <div class="card-body">
 
-<div class="card-header d-flex justify-content-center">
-  <div>
-      <h5 class='m-0'><b> VTR -<%= @car.vtr %></b></h5>
-      <p class='text-secondary m-0'><small><%= @car.model %> [<%= @car.licence_plate %>] </small></p>
+    <div class="card-header d-flex justify-content-center">
       <div>
-        <p> Inicial <%= @car.mileage %></p>
+          <h5 class='m-0'><b> VTR -<%= @car.vtr %></b></h5>
+          <p class='text-secondary m-0'><small><%= @car.model %> [<%= @car.licence_plate %>] </small></p>
+          <div>
+            <p> Inicial <%= @car.mileage %></p>
+          </div>
       </div>
+    </div>
+
+
+    <div class='card-body'> 
+      <ul class="list-group">
+        <% @car.items.each do |item| %>
+          <%= render 'items/item', item: item %>
+        <% end %>
+      </ul>
+          <div class="input-group mb-3">
+      <%= form_for @car do |f| %>
+        <%= f.text_field :mileage %>
+        <%= f.submit "Quilometragem" %>
+      <% end %>
+    </div>
+
   </div>
 </div>
-
-
-<div class='card-body'> 
-  <ul class="list-group">
-    <% @car.items.each do |item| %>
-      <%= render 'items/item', item: item %>
-    <% end %>
-  </ul>
-      <div class="input-group mb-3">
-  <%= form_for @car do |f| %>
-    <%= f.text_field :mileage %>
-    <%= f.submit "Quilometragem" %>
-  <% end %>
-</div>
-</div>
-
-
-
-    
-
- 

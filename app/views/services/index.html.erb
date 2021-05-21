@@ -1,18 +1,21 @@
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Dia - Início do Serviço</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @services.each do |service| %>
-      <tr>
-        <td><%= link_to l(service.created_at, format: :short), service_path(service)%></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="card">
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Dia - Início do Serviço</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @services.each do |service| %>
+        <tr>
+          <td><%= link_to l(service.created_at, format: :short), service_path(service)%></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
   
 
   

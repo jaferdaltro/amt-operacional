@@ -18,17 +18,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-8 offset-md-1 mt-5 offset-lg-2">
-        <%= render 'layouts/message' %>
-          <% if logged_in? %>
-            <div class="card">
-              <div class="card-body">
-                <%= yield %>
-              </div>
-            </div>
-          <% else %>
+          <%= render 'layouts/message' %>
             <%= yield %>
-          <% end %>
-        </div>
+          </div>
       </div>
     </div>
 

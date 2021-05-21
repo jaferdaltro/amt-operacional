@@ -1,0 +1,30 @@
+
+
+    <% @articles.each do |article| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+            <div class="card text-center">
+                  
+                <div class="card-body ">
+                        <h3 class="card-title"><%= article.title %></h3>
+                        <p class="card-text"><%= article.description %></p>
+                        <% if logged_in? && (article.user == current_user || current_user.admin?) %>
+                            <%=link_to "Edit", edit_article_path(article), class:"btn btn-outline-warning"  %>
+                            <%=link_to "Delete", article_path(article), method: :delete, class:"btn btn-outline-danger"  %>
+                        <% end %>
+                </div>
+
+                <div class="card-footer text-muted">
+                   <small>
+                        Criado por <%= article.user.name %>
+                        Há <%= time_ago_in_words(article.created_at) %> atrás.</br>
+                        <% if article.updated_at != article.created_at %>
+                          Editado <%= time_ago_in_words(article.updated_at) %> atrás.
+                        <% end %>
+                   </small>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    <%end%>

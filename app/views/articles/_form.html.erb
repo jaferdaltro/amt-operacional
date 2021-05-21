@@ -1,0 +1,11 @@
+
+
+<%= simple_form_for @article  do |f| %>
+  <%= f.input :title, label: "Titulo da Postagem"  %>
+  <%= f.input :description, rows: 50,  as: :text, label: "Descrição"  %>
+  <%= f.input :pinned, input_html: { value: '1' } %>
+  <%= f.submit 'Enviar'  %>
+<% end %>
+
+
+  

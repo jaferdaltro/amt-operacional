@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root  'static_pages#home'
+  root  'articles#index'
   
   get  '/about',     to: 'static_pages#about'
   get  '/contact',     to: 'static_pages#contact'
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'switch', to: 'clocks#switch_clock'
   put 'start_clock', to: 'clocks#start_clock'
   put 'finish_clock', to: 'clocks#finish_clock'
- 
+  resources :articles
   resources :services, only: [:index, :create, :new, :show]
   resources :users, only: [:new, :create, :show, :index, :edit, :update]
   resources :cars do
