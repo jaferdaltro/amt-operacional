@@ -1,11 +1,16 @@
-
-
-<%= simple_form_for @article  do |f| %>
-  <%= f.input :title, label: "Titulo da Postagem"  %>
-  <%= f.input :description, rows: 50,  as: :text, label: "Descrição"  %>
-  <%= f.input :pinned, input_html: { value: '1' } %>
-  <%= f.submit 'Enviar'  %>
-<% end %>
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: @article) do |form| %>
+      <div class="field">
+        <%= form.label :title, label: 'Título' %>
+        <%= form.text_field :title %>
+        <%= form.rich_text_area :content %>
+        <%= form.submit 'Enviar', class: 'btn btn-primary mt-3' %>
+        <%= link_to 'Cancelar', articles_path, class: 'btn btn-primary mt-3' %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 
   
