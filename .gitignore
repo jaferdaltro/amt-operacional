@@ -40,4 +40,4 @@ yarn-debug.log*
 .yarn-integrity
 
 # Ignore db test files.
-db/test.*
+db/test.*.env
