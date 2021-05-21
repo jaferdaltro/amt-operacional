@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_135558) do
+ActiveRecord::Schema.define(version: 2021_05_21_130025) do
 
   create_table "cars", force: :cascade do |t|
     t.string "owner", limit: 35
     t.string "licence_plate", limit: 8
-    t.string "vtr", limit: 4
+    t.string "vtr", limit: 7
     t.string "brand", limit: 35
     t.string "model", limit: 35
     t.datetime "created_at", precision: 6, null: false
