@@ -6,14 +6,14 @@
         <%= item.description %>
       </span>
       <%= link_to unready_car_item_path(@car, item), method: :patch, class:'btn btn-info btn-sm'  do %>
-          <i class='fas fa-check'></i>
+          <i class='fa fa-check'></i>
       <% end %>
     <% else %>
       <span class='text-muted'>
         <%= item.description %>
       </span>
       <%= link_to ready_car_item_path(@car, item), method: :patch, class:'btn btn-dark btn-sm'  do %>
-          <i class='fas fa-times'></i>
+          <i class='fa fa-times'></i>
       <% end %>
     <% end %>
   </div>
