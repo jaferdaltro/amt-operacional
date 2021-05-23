@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_05_21_180605) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -25,8 +28,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_180605) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_05_21_180605) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -76,8 +79,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_180605) do
   end
 
   create_table "clocks", force: :cascade do |t|
-    t.integer "service_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "service_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "start_at"
@@ -88,7 +91,7 @@ ActiveRecord::Schema.define(version: 2021_05_21_180605) do
   end
 
   create_table "frequencies", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "login_time"
     t.datetime "logout_time"
     t.datetime "created_at", precision: 6, null: false
@@ -101,16 +104,16 @@ ActiveRecord::Schema.define(version: 2021_05_21_180605) do
     t.boolean "ready"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "car_id"
+    t.bigint "car_id"
     t.datetime "ready_at"
-    t.text "obeservation", limit: 50
+    t.text "obeservation"
     t.index ["car_id"], name: "index_items_on_car_id"
   end
 
   create_table "services", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 

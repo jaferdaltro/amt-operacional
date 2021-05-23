@@ -9,7 +9,7 @@
       <tbody>
         <% @services.each do |service| %>
         <tr>
-          <td><%= link_to l(service.created_at, format: :short), service_path(service)%></td>
+          <td><%= link_to l(service.created_at, format: :day), service_path(service)%></td>
         </tr>
         <% end %>
       </tbody>

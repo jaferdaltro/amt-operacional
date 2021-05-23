@@ -1,11 +1,11 @@
 class ClocksController < ApplicationController
   before_action :logged_in_user
   before_action :find_clock, only: [:switch_clock, :finish_clock]
-  before_action :service, only: [:switch_clock, :start_clock]
-  
+  before_action :set_service, only: [:switch_clock, :start_clock]
+
   def switch_clock
     if @clock.nil?
-    render :start_clock
+      render :start_clock
     else
       render :finish_clock
     end
@@ -22,8 +22,9 @@ class ClocksController < ApplicationController
     start_at: Time.zone.now)
     if @clock.save
       flash[:success] = 'Ponto iniciado com sucesso!'
-      redirect_to user_path(current_user)
+      redirect_to root_path
     else
+      redirect_to root_path
       flash[:danger] = 'Ocorreu um erro'
     end
   end
@@ -32,9 +33,10 @@ class ClocksController < ApplicationController
     if @clock.active  
       @clock.update(active: false,  end_at: Time.zone.now)
       flash[:success] = 'Ponto finalizado com sucesso!'
-      redirect_to user_path(current_user.id)
+      redirect_to root_path
     else
-      flash[:danger] = 'problema'
+      redirect_to root_path
+      flash[:danger] = 'Não foi possível finalizar o seu ponto!!'
     end
   end
 
@@ -46,10 +48,10 @@ class ClocksController < ApplicationController
       @clock = current_user.clocks.find_by(service_id: Service.last)
     end
 
-    def service
-      @service = Clock.set_service
+    def set_service
+      @service = Service.set_service(current_user)
     end
-
     
+
 
 end

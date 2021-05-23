@@ -21,10 +21,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'simple_form'
 gem "cocoon"
 gem 'font-awesome-rails'
+gem 'pg', '~> 1.2', '>= 1.2.3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sqlite3', '~> 1.4'
+  # gem 'sqlite3', '~> 1.4'
 end
 
 group :development do
@@ -45,7 +46,5 @@ group :test do
   gem 'guard-minitest', '~> 2.4', '>= 2.4.6'
 end
 
-group :production do
-  gem 'pg', '~> 1.2', '>= 1.2.3'
-end
+
 
