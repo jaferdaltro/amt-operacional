@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
-  before_action :logged_in_user, except: %i[show index]
+  before_action :logged_in_user
   before_action :require_same_user, only: %i[edit udate destroy]
   before_action :require_admin, except: [:index, :show]
 
