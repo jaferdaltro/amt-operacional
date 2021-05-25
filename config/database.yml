@@ -30,6 +30,6 @@ production:
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: amt_operacional_app_prod
-  username: amt_operacional
+  database: d32pr9us6mjk42
+  username: dcqbzeuvowdixx
   password: <%= ENV['AMT_OPERACIONAL_DATABASE_PASSWORD'] %>
