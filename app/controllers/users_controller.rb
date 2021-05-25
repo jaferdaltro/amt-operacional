@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user
   before_action :set_user, only: [:show, :edit, :update]
   def index
-    @users = User.order(:alias)
+    @users = User.order(:username)
   end
 
   def edit
@@ -44,8 +44,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation, :admin, :registration, :supervisor, :alias)
+    params.require(:user).permit(:name,  :password,
+                                 :password_confirmation, :admin, :registration, :supervisor, :username)
   end
 
   def set_user

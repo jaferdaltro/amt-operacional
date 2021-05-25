@@ -6,8 +6,8 @@
           <th scope="col">#</th>
           <th scope="col">Matrícula</th>
           <th scope="col">Nome de Guerra</th>
-          <th scope="col">Email</th>
           <th scope="col">Nome</th>
+          <th scope="col">Equipe</th>
           <th scope="col">Pontuação</th>
         </tr>
       </thead>
@@ -16,9 +16,13 @@
         <tr>
           <td><%= user.id %></td>
           <td><%= user.registration %></td>
-          <td><%= user.alias %></td>
-          <td><%= user.email %></td>
-          <td><%= user.name %></td>
+          <td><%= user.username.upcase %></td>
+          <td><%= user.name.titleize %></td>
+          <% if user.team.nil? %>
+            <td> - </td>
+          <% else %>
+            <td><%= truncate(user.team.name, length: 9) %></td>
+          <% end %>
           <td><%= user.score %></td>
         </tr>
         <% end %> 

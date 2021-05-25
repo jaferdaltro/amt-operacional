@@ -31,13 +31,7 @@
 
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <% if current_user.name.nil? && current_user.alias.nil? %>
-            Perfil
-          <% elsif current_user.agent %>
-            <%= @current_user.alias %>
-          <% else%>
-            <%= @current_user.name %>
-          <% end %>
+          <%= @current_user.username.capitalize %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to 'Perfil', user_path(current_user), class:"dropdown-item"  %>

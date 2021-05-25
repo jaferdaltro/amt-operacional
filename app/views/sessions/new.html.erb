@@ -6,8 +6,8 @@
       <%= image_tag "logo.png", size: '180x130' %>
       <h1 class="h3 mb-3 font-weight-normal"> Login</h1>
 
-      <%= f.label :email, 'email', class:'sr-only' %>
-      <%= f.email_field :email, placeholder: 'email' ,class: 'form-control' %>
+      <%= f.label :username, 'usuário', class:'sr-only' %>
+      <%= f.text_field :username, placeholder: 'usuário' ,class: 'form-control' %>
 
       <%= f.label :password, 'senha', class:'sr-only' %>
       <%= f.password_field :password, placeholder: 'senha', class: 'form-control' %>
@@ -15,5 +15,5 @@
       <%= f.submit "ENTRAR", class: "btn btn-lg btn-primary btn-block" %>
     <% end %>
 
-    <p>Para solicitar acesso <%= link_to "clique aqui!", new_user_path %></p>
+    
 </div>

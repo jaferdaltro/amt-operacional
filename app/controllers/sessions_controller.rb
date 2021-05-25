@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   # post login_path
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
+    user = User.find_by(username: params[:session][:username].downcase)
     if user && user.authenticate(params[:session][:password])
       reset_session
       remember user
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       flash.now[:success] = "Login realizado com sucesso"
       redirect_to root_path
     else
-      flash.now[:danger] = "Combinação Email/Senha inválida"
+      flash.now[:danger] = "Combinação usuário/senha inválida"
       render 'new'
     end
   end

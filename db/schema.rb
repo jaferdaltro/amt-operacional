@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_180605) do
+ActiveRecord::Schema.define(version: 2021_05_25_113830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,12 @@ ActiveRecord::Schema.define(version: 2021_05_21_180605) do
     t.index ["car_id"], name: "index_items_on_car_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "services", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -117,9 +123,23 @@ ActiveRecord::Schema.define(version: 2021_05_21_180605) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
@@ -128,9 +148,10 @@ ActiveRecord::Schema.define(version: 2021_05_21_180605) do
     t.integer "score", default: 0
     t.boolean "agent", default: false
     t.boolean "supervisor", default: false
-    t.string "alias"
+    t.string "username"
     t.string "remember_digest"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.bigint "team_id"
+    t.index ["team_id"], name: "index_users_on_team_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -140,4 +161,7 @@ ActiveRecord::Schema.define(version: 2021_05_21_180605) do
   add_foreign_key "frequencies", "users"
   add_foreign_key "items", "cars"
   add_foreign_key "services", "users"
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
+  add_foreign_key "users", "teams"
 end

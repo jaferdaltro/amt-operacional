@@ -1,11 +1,16 @@
 class User < ApplicationRecord
-  before_save { self.email = email.downcase}
+  belongs_to :team
+  has_many :user_roles
+  # before_save { self.email = email.downcase}
+  before_save { self.name = name.titleize}
+  before_save { self.username = username.downcase}
   attr_accessor :remember_token
   has_many :clocks
   has_many :articles
   validates :name, presence: true, length: {maximum: 50}
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: {maximum: 50}, format: { with: VALID_EMAIL_REGEX }, uniqueness: {case_sensitive: false}
+  validates :username, presence: true, length: {maximum: 30}, uniqueness: {case_sensitive: false}
+  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  # validates :email, presence: false, length: {maximum: 50}, format: { with: VALID_EMAIL_REGEX }
       
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
@@ -36,6 +41,16 @@ class User < ApplicationRecord
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
-  end  
+  end 
+  
+  def group_name
+    if self.user_groups.empty?
+      name
+    else
+      self.user_groups.first.group.name
+
+    end
+  end
+  
       
 end

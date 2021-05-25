@@ -3,7 +3,7 @@
     PONTO ELETRÔNICO - SERVIÇO DE <%=l(@service.created_at,  format: :day) %>
   </div>
   <div class="card-body">
-    <h5 class="card-title"><%= current_user.registration %> - <%= current_user.alias %></h5>
+    <h5 class="card-title"><%= current_user.registration %> - <%= current_user.username %></h5>
         <p class="card-text">Clique no botão abaixo pra iniciar o seu ponto.</p>
         <%=  link_to 'Iniciar Ponto', start_clock_path, method: :put, class: 'btn btn-success'  %>
   </div>
