@@ -21,7 +21,7 @@
           <% if user.team.nil? %>
             <td> - </td>
           <% else %>
-            <td><%= truncate(user.team.name, length: 9) %></td>
+            <td><%= user.team.name%></td>
           <% end %>
           <td><%= user.score %></td>
         </tr>

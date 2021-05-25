@@ -27,6 +27,12 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
+  def user_admin?
+    admin = Role.find(1)
+    self.admin_roles.admin 
+  end
+  
+
   def remember
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))

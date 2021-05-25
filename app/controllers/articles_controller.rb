@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
   end
 
   def require_admin
-    if !(logged_in? && current_user.admin?)
+    if !(logged_in? && current_user.user_admin?
         flash[:danger]="Apenas admistradores podem acessar essa página"
         redirect_to articles_path
     end
