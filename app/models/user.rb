@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   belongs_to :team
   has_many :user_roles
+  has_many :roles, through: :user_roles
   # before_save { self.email = email.downcase}
   before_save { self.name = name.titleize}
   before_save { self.username = username.downcase}
@@ -28,8 +29,7 @@ class User < ApplicationRecord
   end
 
   def user_admin?
-    admin = Role.find(1)
-    self.admin_roles.admin 
+    self.roles.find_by(name: 'admin') == Role.find_by(name: 'admin')
   end
   
 

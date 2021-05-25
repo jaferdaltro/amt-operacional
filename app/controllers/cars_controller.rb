@@ -2,6 +2,7 @@ class CarsController < ApplicationController
   before_action :logged_in_user
   before_action :find_car, only: [:destroy, :update, :edit, :show]
   before_action :find_item, only: [:show]  
+  before_action :require_admin, except: [:index, :show]
 
 
   def index

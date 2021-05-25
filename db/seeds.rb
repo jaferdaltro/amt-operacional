@@ -1,6 +1,7 @@
 Role.create(name: 'admin')
 Role.create(name: 'supervisor')
 Role.create(name: 'rh')
+Role.create(name: 'agent')
 
 Team.create(name: 'A')
 Team.create(name: 'B')
@@ -89,7 +90,9 @@ User.find_by(username: 'daltro').user_roles.build(role_id: 1).save
 User.find_by(username: 'douglas').user_roles.build(role_id: 1).save
 User.find_by(username: 'walber').user_roles.build(role_id: 1).save 
 
-
+User.all.each do |user|
+  user.user_roles.build(role_id: 4).save
+end
 
 
 Car.create(vtr:'VT-08', licence_plate: 'PMT-4232', owner: 'AMT', brand: 'Volkswagem', model: 'GOL')
