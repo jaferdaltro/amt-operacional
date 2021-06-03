@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_113830) do
+ActiveRecord::Schema.define(version: 2021_06_03_131159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_113830) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "pinned"
+    t.text "content"
   end
 
   create_table "cars", force: :cascade do |t|
@@ -108,6 +109,14 @@ ActiveRecord::Schema.define(version: 2021_05_25_113830) do
     t.datetime "ready_at"
     t.text "obeservation"
     t.index ["car_id"], name: "index_items_on_car_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "address"
+    t.float "latitude"
+    t.float "logitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "roles", force: :cascade do |t|

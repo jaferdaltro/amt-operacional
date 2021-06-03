@@ -17,12 +17,13 @@ class ArticlesController < ApplicationController
   def edit; end
 
   def create
-    @article = Article.new(get_params)
+    @article = Article.create!(get_params)
     @article.user = current_user
     if @article.save
       flash[:notice] = 'Article was created successfully.'
       redirect_to @article
     else
+      flash[:danger] = 'Houve um problema na publicação'
       render 'new'
     end
   end
@@ -48,7 +49,7 @@ class ArticlesController < ApplicationController
   end
 
   def get_params
-    params.require(:article).permit(:title, :description, :pinned)
+    params.require(:article).permit(:title, :content, :pinned)
   end
 
   def require_same_user
