@@ -123,3 +123,37 @@ Car.create(vtr:'MT-21', licence_plate: 'POP-3298', owner: 'AMT', brand: 'HONDA',
 Car.create(vtr:'REBOQUE', licence_plate: 'OHX-3020', owner: 'AMT', brand: 'VOLKSWAGEM', model: 'VW/8 160 DRC 4X2')
 Car.create(vtr:'ADM', licence_plate: 'POH-6428', owner: 'AMT', brand: 'VOLKSWAGEM', model: 'VW VOYAGE/8')
 Car.create(vtr:'ADM', licence_plate: 'POH-6438', owner: 'AMT', brand: 'VOLKSWAGEM', model: 'VW VOYAGE/8')
+
+itemsC = ["farol baixo", "farol alto", "buzina", "luz de freio", "luz de posição", "luz de posição traseira",
+ "luz de placa", "funcionamento do painel", "luzes indicadoras de mudança de direção", "sirene",
+"retrovisores", "pisca-alerta", "luz de posição dianteira", "luz intermitente(giroflex)","estepe/chave de roda/macaco", "luz de ré"]
+
+itemM = [
+  "LUZ INTERMITENTE (GIROFLEX)",
+"FAROL BAIXO",
+"FAROL ALTO",
+"BUZINA",
+"LUZ DE FREIO",
+"LUZ DE POSIÇÃO TRASEIRA",
+"FUNCIONAMENTO DO PAINEL",
+"LUZES INDICADORAS DE MUDANÇA DE DIREÇÃO",
+"SIRENE",
+"PORTA OBJETOS",
+"RETROVISORES",
+"ESTADO DE CONSERVAÇÃO DO PNEU"
+
+]
+
+Car.all.each do |car|
+  if (car.model == "GOL" || car.model == "TROLLER" || car.model == "Amarok") 
+    itemsC.each do |item|
+      Item.create!(description: item, car_id: car.id )
+      puts "Inserido item em carro.."
+    end
+  else
+    itemM.each do |item|
+      Item.create!(description: item, car_id: car.id)
+      puts "Inserido item em moto.."
+    end
+  end  
+end
