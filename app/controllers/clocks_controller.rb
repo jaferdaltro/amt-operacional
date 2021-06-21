@@ -33,7 +33,7 @@ class ClocksController < ApplicationController
   def finish_clock
     
     @clock ||= current_user.clocks.last
-    if @clock.active?  
+    if @clock.active
       @clock.update(active: false,  end_at: Time.zone.now)
       current_user.update_attribute(:work, false)
       flash[:success] = 'Ponto finalizado com sucesso!'
@@ -50,7 +50,7 @@ class ClocksController < ApplicationController
   private 
     def find_clock
       @clock = current_user.clocks.last
-      if @clock.active?
+      if @clock.active
         @clock
       else
         @clock = nil
