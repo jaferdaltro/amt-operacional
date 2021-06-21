@@ -4,7 +4,7 @@ class ClocksController < ApplicationController
   before_action :set_service, only: [:switch_clock, :start_clock]
 
   def switch_clock
-    if current_user.clocks.last.active?
+    if current_user.clocks.last.active? || !@clock.nil?
       render :finish_clock
     else
       render :start_clock
