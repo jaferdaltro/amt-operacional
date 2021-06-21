@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   # post login_path
   def create
-    user = User.find_by(username: params[:session][:username].downcase)
+    user = User.find_by(username: params[:session][:username].downcase.strip)
     if user && user.authenticate(params[:session][:password])
       reset_session
       remember user

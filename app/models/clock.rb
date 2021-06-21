@@ -1,5 +1,5 @@
 class Clock < ApplicationRecord
-  belongs_to :service, optional: true
+  belongs_to :service
   belongs_to :user
 
   def start_clock
@@ -31,7 +31,7 @@ class Clock < ApplicationRecord
 
   private 
     def find_clock
-      @clock = current_user.clocks.find_by(service_id: Service.last)
+      @clock = current_user.clocks.last
     end
 
 

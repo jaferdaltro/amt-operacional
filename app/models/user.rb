@@ -4,9 +4,10 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles
   # before_save { self.email = email.downcase}
   before_save { self.name = name.titleize}
-  before_save { self.username = username.downcase}
-  attr_accessor :remember_token
+  before_save { self.username = username.downcase.strip}
+  attr_accessor :remember_token, :active
   has_many :clocks
+  has_many :services, through: :clocks
   has_many :articles
   validates :name, presence: true, length: {maximum: 50}
   validates :username, presence: true, length: {maximum: 30}, uniqueness: {case_sensitive: false}
@@ -21,6 +22,10 @@ class User < ApplicationRecord
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+
+  def active
+    self.active = false
   end
 
    # Returns a random token.

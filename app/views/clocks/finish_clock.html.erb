@@ -4,8 +4,8 @@
   </div>
   <div class="card-body">
     <h5 class="card-title"><%= current_user.registration %> - <%= current_user.name %></h5>
-    <% if current_user.clocks.last.active? %>
-        <p class="card-text">Ponto iniciado há <%= @clock.start_at.nil? ? 'ninguém sabe': time_ago_in_words(@clock.start_at)  %></p>
+    <% if @clock.active %>
+        <p class="card-text">Ponto iniciado há <%= time_ago_in_words(@clock.start_at)  %></p>
         <%=  link_to 'Finalizar Ponto', finish_clock_path, method: :put, class: 'btn btn-warning'  %>
     <% else %>
       <p class="card-text">Ponto finalizado há <%= @clock.end_at.nil? ? 'ninguém sabe': time_ago_in_words(@clock.end_at)  %></p>
