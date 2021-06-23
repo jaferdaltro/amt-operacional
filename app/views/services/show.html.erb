@@ -14,7 +14,7 @@
         <tbody>
           <tr>
             <td><%= clock.user.name %></td>
-            <td><%= l clock.start_at, format: :short %></td>
+            <td><%= l clock.created_at, format: :short %></td>
             <td><%= clock.end_at.nil? ? '' : l(clock.end_at, format: :short)  %></td>
             
           </tr>
