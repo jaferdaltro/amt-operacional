@@ -8,9 +8,6 @@ class ClocksController < ApplicationController
   def show
     current_service = @service.current_service(current_user)
     @clock = current_user.clocks.last
-    # @clock_in =current_service.clocks.where(user_id: current_user.id)
-    console
-    # byebug
   end
  
   def clock_in
@@ -21,8 +18,7 @@ class ClocksController < ApplicationController
     else
       reder :show
     end
-    console
-    # byebug
+ 
   end
     
 
