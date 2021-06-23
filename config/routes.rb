@@ -11,14 +11,16 @@ Rails.application.routes.draw do
 
   delete  '/logout', to: 'sessions#destroy'
 
-  get 'welcome/index'
+  get 'clock', to: 'clocks#show'
+  patch 'clock_in', to: 'clocks#clock_in'
+  patch 'clock_out', to: 'clocks#clock_out'
 
-  get 'switch', to: 'clocks#switch_clock'
-  put 'start_clock', to: 'clocks#start_clock'
-  put 'finish_clock', to: 'clocks#finish_clock'
+
+
   resources :articles
   resources :services, only: [:index, :create, :new, :show]
   resources :users, only: [:new, :create, :show, :index, :edit, :update]
+  
   resources :cars do
     resources :items do
       member do

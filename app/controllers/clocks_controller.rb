@@ -1,66 +1,46 @@
 class ClocksController < ApplicationController
   before_action :logged_in_user
-  before_action :find_clock, only: [:switch_clock, :finish_clock]
-  before_action :set_service, only: [:switch_clock, :start_clock]
-
-  def switch_clock
-    if @clock.nil?
-      render :start_clock
-    else
-      render :finish_clock
-    end
-  end
-
-
-
+  before_action :set_service
+  attr_accessor :service
+  attr_accessor :clock
  
-  def start_clock
-    @clock = Clock.new(
-    user_id:current_user.id,
-    service_id: @service.id,
-    active: true,
-    start_at: Time.zone.now)
+
+  def show
+    current_service = @service.current_service(current_user)
+    @clock = current_user.clocks.last
+    # @clock_in =current_service.clocks.where(user_id: current_user.id)
+    console
+    # byebug
+  end
+ 
+  def clock_in
+    @clock = Clock.new(service_id: @service.id, user_id: current_user.id, active: true)
     if @clock.save
-      current_user.update_attribute(:work, true)
-      flash[:success] = 'Ponto iniciado com sucesso!'
+      flash[:success] = 'Ponto iniciado com sucesso'
       redirect_to root_path
     else
-      redirect_to root_path
-      flash[:danger] = 'Ocorreu um erro'
+      reder :show
     end
+    console
+    # byebug
   end
-
-  def finish_clock
     
-    @clock ||= current_user.clocks.last
-    if @clock.active
-      @clock.update(active: false,  end_at: Time.zone.now)
-      current_user.update_attribute(:work, false)
-      flash[:success] = 'Ponto finalizado com sucesso!'
+
+  def clock_out
+    service = @service.current_service(current_user)
+    clock = service.clocks.last
+    if service && clock.update(end_at: Time.now, active: false)
+      flash[:success] = 'Ponto finalizado com sucesso'
       redirect_to root_path
     else
-      redirect_to root_path
-      flash[:danger] = 'Não foi possível finalizar o seu ponto!!'
+      render :show
     end
   end
-
+  private
 
   
-
-  private 
-    def find_clock
-      @clock = current_user.clocks.last
-      if @clock.active
-        @clock
-      else
-        @clock = nil
-      end
-    end
-
-    def set_service
-      @service = Service.set_service
-    end
-    
-
+  def set_service
+    @service = Service.set_service
+  end
 
 end

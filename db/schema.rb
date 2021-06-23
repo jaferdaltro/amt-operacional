@@ -53,16 +53,6 @@ ActiveRecord::Schema.define(version: 2021_06_21_140248) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "addresses", force: :cascade do |t|
-    t.string "street"
-    t.string "district", default: "centro"
-    t.string "cep"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -70,7 +60,6 @@ ActiveRecord::Schema.define(version: 2021_06_21_140248) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "pinned"
-    t.text "content"
   end
 
   create_table "cars", force: :cascade do |t|
@@ -99,17 +88,6 @@ ActiveRecord::Schema.define(version: 2021_06_21_140248) do
     t.boolean "active", default: false
     t.index ["service_id"], name: "index_clocks_on_service_id"
     t.index ["user_id"], name: "index_clocks_on_user_id"
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.string "os"
-    t.string "owner"
-    t.integer "agent_quantity"
-    t.text "description"
-    t.bigint "service_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["service_id"], name: "index_events_on_service_id"
   end
 
   create_table "frequencies", force: :cascade do |t|
@@ -143,13 +121,6 @@ ActiveRecord::Schema.define(version: 2021_06_21_140248) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_services_on_user_id"
-  end
-
-  create_table "stuffs", force: :cascade do |t|
-    t.string "name"
-    t.integer "amount", default: 1
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "teams", force: :cascade do |t|
@@ -188,7 +159,6 @@ ActiveRecord::Schema.define(version: 2021_06_21_140248) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "clocks", "services"
   add_foreign_key "clocks", "users"
-  add_foreign_key "events", "services"
   add_foreign_key "frequencies", "users"
   add_foreign_key "items", "cars"
   add_foreign_key "services", "users"

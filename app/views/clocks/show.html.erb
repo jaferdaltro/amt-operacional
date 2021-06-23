@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    PONTO ELETRÔNICO - SERVIÇO DE <%=l(@service.created_at,  format: :day) %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= current_user.registration %> - <%= current_user.name %></h5>
+     <%= render 'clock_buttons', clock: @clock %>
+  </div>
+</div>
+
+
+
+  

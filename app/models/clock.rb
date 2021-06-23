@@ -2,8 +2,9 @@ class Clock < ApplicationRecord
   belongs_to :service
   belongs_to :user
 
+
   def start_clock
-    service = Service.set_service(current_user)
+    service = Service.set_service
     @clock = Clock.new(
     user_id:current_user.id,
     service_id: service.id,
@@ -29,10 +30,7 @@ class Clock < ApplicationRecord
     end
   end
 
-  private 
-    def find_clock
-      @clock = current_user.clocks.last
-    end
+
 
 
 end
