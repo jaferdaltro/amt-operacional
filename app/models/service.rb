@@ -4,14 +4,6 @@ class Service < ApplicationRecord
   has_many :users, through: :clocks
   attr_accessor :team
 
-  # def create_teams
-  #   a = Team.create(name: 'A')
-  #   b = Team.create(name: 'B')
-  #   c = Team.create(name: 'C')
-  #   d = Team.create(name: 'D')
-  #   teams = [a,b,c,d]
-  # end
-
   def current_service(user)
     clock = user.clocks.last
     clock.service unless clock.nil?
