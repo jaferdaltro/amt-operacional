@@ -1,8 +1,6 @@
-    <% if clock.nil?  %>
-      <%=  link_to 'Iniciar Ponto', clock_in_path, method: :patch, class: 'btn btn-success'  %>
-    <% elsif clock.end_at.nil? %>
+    <% if clock.active %>
       <p class="card-text">Ponto iniciado ha <%= time_ago_in_words(clock.created_at)  %></p>
       <%=  link_to 'Finalizar Ponto', clock_out_path, method: :patch, class: 'btn btn-warning'  %>
     <% else%>
-      <p class="card-text">Ponto finalizado ha <%= time_ago_in_words(clock.end_at)  %></p>
+      <%=  link_to 'Iniciar Ponto', clock_in_path, method: :patch, class: 'btn btn-success'  %>
     <% end %>

@@ -1,17 +1,18 @@
 class ClocksController < ApplicationController
   before_action :logged_in_user
   before_action :set_service
-  attr_accessor :service
-  attr_accessor :clock
- 
+  before_action :current_clock, only: [:show, :clock_out]
 
   def show
-    current_service = @service.current_service(current_user)
-    @clock = current_user.clocks.last
+    # @clock = Clock.new unless @clock.active
+    if @clock.nil?
+      @clock = Clock.new
+    end
+    console
   end
  
   def clock_in
-    @clock = Clock.new(service_id: @service.id, user_id: current_user.id, active: true)
+    @clock = @service.clocks.build(user_id: current_user.id, active: true)
     if @clock.save
       flash[:success] = 'Ponto iniciado com sucesso'
       redirect_to root_path
@@ -23,9 +24,8 @@ class ClocksController < ApplicationController
     
 
   def clock_out
-    service = @service.current_service(current_user)
-    clock = service.clocks.last
-    if service && clock.update(end_at: Time.now, active: false)
+    
+    if @clock.update(end_at: Time.now, active: false)
       flash[:success] = 'Ponto finalizado com sucesso'
       redirect_to root_path
     else
@@ -34,9 +34,15 @@ class ClocksController < ApplicationController
   end
   private
 
+  def current_clock
+    @clock = current_user.clocks.last 
+  end
+
   
   def set_service
     @service = Service.set_service
   end
+
+
 
 end
