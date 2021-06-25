@@ -4,11 +4,9 @@ class ClocksController < ApplicationController
   before_action :current_clock, only: [:show, :clock_out]
 
   def show
-    # @clock = Clock.new unless @clock.active
     if @clock.nil?
       @clock = Clock.new
     end
-    console
   end
  
   def clock_in
