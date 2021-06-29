@@ -10,6 +10,10 @@ class UsersController < ApplicationController
   end
 
   def update
+
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      param[:user].extract!(:password, :password_confirmation)
+    end
     if @user.update(user_params)
       flash[:success] = 'Dados atualizados'
       redirect_to @user
@@ -44,8 +48,9 @@ class UsersController < ApplicationController
   private
 
   def user_params
+
     params.require(:user).permit(:name,  :password,
-                                 :password_confirmation, :admin, :registration, :supervisor, :username)
+                                 :password_confirmation, :admin, :registration, :supervisor, :username, :team_id)
   end
 
   def set_user
