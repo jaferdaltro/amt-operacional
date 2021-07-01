@@ -15,7 +15,11 @@
       </thead>
       <tbody>
         <% @users.each do |user| %>
-        <tr>
+        <% if user.role.name == 'supervisor' %>
+          <tr class="table-primary">
+        <% else%>
+          <tr>
+        <% end %>  
           <td><%= user.registration %></td>
           <td><%= user.username.upcase %></td>
           <td><%= user.name %></td>
