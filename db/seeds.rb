@@ -1,16 +1,16 @@
 Role.create(name: 'supervisor')
 Role.create(name: 'rh')
-Role.create(name: 'motorcyclist')
-Role.create(name: 'driver')
-Role.create(name: 'patrolman')
-Role.create(name: 'user')
+Role.create(name: 'motociclista')
+Role.create(name: 'motorista')
+Role.create(name: 'patrulheiro')
+Role.create(name: 'usuário')
 
 Team.create(name: 'A') #aguiar
 Team.create(name: 'B') #joheldes
 Team.create(name: 'C') #tarcila
 Team.create(name: 'D') #daniel
-Team.create(name: 'Administrativo')
-Team.create(name: 'Outras Secretarias')
+Team.create(name: 'ADMINISTRATIVO')
+Team.create(name: 'CEDIDO')
 
 User.create!(username:"Martins", name: "ADABERON MARTINS MOREIRA", team_id: 4,:registration=>"51934", :password=>"123456", :password_confirmation=>"123456")
 User.create!(username:"Adriano", name: "ADRIANO ARAÚJO MAGALHÃES",team_id: 3, :registration=>"13953", :password=>"123456", :password_confirmation=>"123456")
@@ -87,13 +87,14 @@ User.create!(username: 'Lacerda',name: "TIAGO LACERDA MACIEL", team_id: 3,:regis
 User.create!(username: 'Tito',name: "TITO TAVARES CAVALCANTI JÚNIOR",  team_id: 6,:registration=>"15299", :password=>"123456", :password_confirmation=>"123456")
 User.create!(username: 'Wesley',name: "WESLEY JOSÉ PEREIRA RODRIGUES", team_id: 2,:registration=>"55345", :password=>"123456", :password_confirmation=>"123456")
 
-
-
+puts "atribuindo motorista a todos ...."
 
 User.all.each do |user|
-  user.user_roles.build(role_id: 4).save
+  user.update(role_id: 4)
 end
 
+
+puts "criando viaturas ...."
 
 Car.create(vtr:'VT-08', licence_plate: 'PMT-4232', owner: 'AMT', brand: 'Volkswagem', model: 'GOL')
 Car.create(vtr:'VT-09', licence_plate: 'PMT-4192', owner: 'AMT', brand: 'Volkswagem', model: 'GOL')
@@ -157,3 +158,5 @@ Car.all.each do |car|
     end
   end  
 end
+
+User.find_by(username: 'daltro').toggle(:admin).save!

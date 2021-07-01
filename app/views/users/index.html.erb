@@ -17,6 +17,8 @@
         <% @users.each do |user| %>
         <% if user.role.name == 'supervisor' %>
           <tr class="table-primary">
+        <% elsif user.role.name == 'motociclista' %>
+          <tr class="table-danger">
         <% else%>
           <tr>
         <% end %>  
@@ -36,4 +38,3 @@
     </table>
   </div>
 </div>
-

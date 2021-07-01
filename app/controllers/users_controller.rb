@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_admin, only: [:create, :index]
   before_action :logged_in_user
   before_action :verify_password, only: [:update]
   before_action :set_user, only: [:show, :edit, :update]
@@ -13,7 +14,11 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = 'Dados atualizados'
-      redirect_to root_path
+      if current_user.admin?
+        redirect_to users_path
+      else
+        redirect_to @user
+      end
     else
       flash[:warning] = 'Houve falha'
       render :edit
