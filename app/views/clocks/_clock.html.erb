@@ -1,0 +1,18 @@
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Dia</th>
+          <th scope="col">Entrada</th>
+          <th scope="col">Saída</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% user_clock.each do |clock| %>
+        <tr>
+          <td><%=  l(clock.created_at, format: :day) %></td>
+           <td><%= l clock.created_at, format: :short %></td>
+            <td><%= clock.end_at.nil? ? '' : l(clock.end_at, format: :short)  %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>

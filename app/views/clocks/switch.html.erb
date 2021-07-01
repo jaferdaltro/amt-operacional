@@ -3,8 +3,11 @@
     PONTO ELETRÔNICO - SERVIÇO DE <%=l(@service.created_at,  format: :day) %>
   </div>
   <div class="card-body">
-    <h5 class="card-title"><%= current_user.registration %> - <%= current_user.name %></h5>
+    <h5 class="card-title"><%= current_user.registration %> - <%= current_user.name %> <span class="badge bg-primary"><%= current_user.team.name %></span> </h5> 
      <%= render 'clock_buttons', clock: @clock%>
+     <%= render 'clock', user_clock: @user_clock%>
+
+
   </div>
 </div>
 

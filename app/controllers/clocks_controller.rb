@@ -1,10 +1,11 @@
 class ClocksController < ApplicationController
   before_action :logged_in_user
   before_action :set_service
-  before_action :current_clock, only: [:show, :clock_out]
+  before_action :current_clock, only: [:switch, :clock_out]
 
-  def show
+  def switch
       @clock ||= Clock.new
+      @user_clock = current_user.clocks
   end
  
   def clock_in
@@ -13,7 +14,7 @@ class ClocksController < ApplicationController
       flash[:success] = 'Ponto iniciado com sucesso'
       redirect_to root_path
     else
-      reder :show
+      reder :switch
     end
  
   end
@@ -25,9 +26,11 @@ class ClocksController < ApplicationController
       flash[:success] = 'Ponto finalizado com sucesso'
       redirect_to root_path
     else
-      render :show
+      render :switch
     end
   end
+
+
   private
 
   def current_clock

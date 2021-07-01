@@ -1,9 +1,11 @@
 <% provide(:title, @user.username) %>
 <div class="card">
+ <div class="card-header">
+   <p> Equipe <%= @user.team.name %> - <%= @user.role.name %></p>
+  </div>
   <div class="card-body"> 
     <aside class="col-md-5">
       <section class="user_info">
-        <p> <strong>Equipe <%= @user.team.name %></strong></p>
         <p><strong><%= @user.registration %></strong> - <strong><%= @user.name %></strong></p>
         <%= link_to 'Editar', edit_user_path(@user), class: 'btn btn-primary' %>
       </section>

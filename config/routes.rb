@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   delete  '/logout', to: 'sessions#destroy'
 
-  get 'clock', to: 'clocks#show'
+  get 'switch', to: 'clocks#switch'
   patch 'clock_in', to: 'clocks#clock_in'
   patch 'clock_out', to: 'clocks#clock_out'
 
