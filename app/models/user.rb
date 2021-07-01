@@ -1,8 +1,6 @@
 class User < ApplicationRecord
   belongs_to :team
-  has_many :user_roles
-  has_many :roles, through: :user_roles
-  accepts_nested_attributes_for :roles
+  belongs_to :role
   # before_save { self.email = email.downcase}
   before_save { self.name = name.titleize}
   before_save { self.username = username.downcase.strip}

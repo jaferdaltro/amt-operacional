@@ -7,9 +7,9 @@
           <th scope="col">Nome de Guerra</th>
           <th scope="col">Nome</th>
           <th scope="col">Equipe</th>
-          <% if current_user.user_admin? %>
-            <th>AÇÕES</th>
-          <% end %>
+          <th scope="col">Função</th>
+          <th scope="col">Editar</th>
+          
           
         </tr>
       </thead>
@@ -18,20 +18,14 @@
         <tr>
           <td><%= user.registration %></td>
           <td><%= user.username.upcase %></td>
-          <td><%= user.name.titleize %></td>
-          <% if user.team.nil? %>
-            <td> - </td>
-          <% else %>
-            <td><%= user.team.name%></td>
-          <% end %>
-           <td>
+          <td><%= user.name %></td>
+          <td><%= user.team.name%></td>
+          <td><%= user.role.name %></td>
+          <td>
             <%= link_to edit_user_path(user), class:"btn btn-warning btn-circle" do %>
               <i class='fa fa-edit'></i>
             <% end %>
-            <%= link_to user_path(user), method: :delete, data: {confirm: 'Tem certeza ?'}, class:"btn btn-danger btn-circle" do %>
-              <i class='fa fa-trash'></i>
-            <% end %>
-           </td>
+          </td>
         </tr>
         <% end %> 
       </tbody>

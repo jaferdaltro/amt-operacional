@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = 'Dados atualizados'
-      redirect_to @user
+      redirect_to root_path
     else
       flash[:warning] = 'Houve falha'
       render :edit
