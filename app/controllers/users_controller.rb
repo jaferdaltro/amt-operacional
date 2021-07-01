@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user
+  before_action :verify_password, only: [:update]
   before_action :set_user, only: [:show, :edit, :update]
   def index
     @users = User.order(:team_id)
@@ -10,14 +11,11 @@ class UsersController < ApplicationController
   end
 
   def update
-
-    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-      param[:user].extract!(:password, :password_confirmation)
-    end
     if @user.update(user_params)
       flash[:success] = 'Dados atualizados'
       redirect_to @user
     else
+      flash[:warning] = 'Houve falha'
       render :edit
     end
   end
@@ -47,10 +45,16 @@ class UsersController < ApplicationController
 
   private
 
+  
+  def verify_password
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user].extract!(:password, :password_confirmation)
+    end
+  end
+  
   def user_params
-
     params.require(:user).permit(:name,  :password,
-                                 :password_confirmation, :admin, :registration, :supervisor, :username, :team_id)
+                                 :password_confirmation, :admin, :registration, :username, :team_id, :role_id)
   end
 
   def set_user

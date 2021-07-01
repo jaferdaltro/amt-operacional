@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_140248) do
+ActiveRecord::Schema.define(version: 2021_07_01_113925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,12 +146,12 @@ ActiveRecord::Schema.define(version: 2021_06_21_140248) do
     t.boolean "admin", default: false
     t.string "registration"
     t.integer "score", default: 0
-    t.boolean "agent", default: false
-    t.boolean "supervisor", default: false
     t.string "username"
     t.string "remember_digest"
     t.bigint "team_id"
     t.boolean "work", default: false
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["team_id"], name: "index_users_on_team_id"
   end
 
@@ -164,5 +164,6 @@ ActiveRecord::Schema.define(version: 2021_06_21_140248) do
   add_foreign_key "services", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
+  add_foreign_key "users", "roles"
   add_foreign_key "users", "teams"
 end

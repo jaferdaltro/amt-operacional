@@ -2,6 +2,7 @@ class User < ApplicationRecord
   belongs_to :team
   has_many :user_roles
   has_many :roles, through: :user_roles
+  accepts_nested_attributes_for :roles
   # before_save { self.email = email.downcase}
   before_save { self.name = name.titleize}
   before_save { self.username = username.downcase.strip}
@@ -15,7 +16,7 @@ class User < ApplicationRecord
   # validates :email, presence: false, length: {maximum: 50}, format: { with: VALID_EMAIL_REGEX }
       
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  # validates :password, presence: true, length: { minimum: 6 }
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -34,7 +35,7 @@ class User < ApplicationRecord
   end
 
   def user_admin?
-    self.roles.find_by(name: 'admin') == Role.find_by(name: 'admin')
+    self.admin
   end
   
 

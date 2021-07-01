@@ -1,12 +1,14 @@
-Role.create(name: 'admin')
 Role.create(name: 'supervisor')
 Role.create(name: 'rh')
-Role.create(name: 'agent')
+Role.create(name: 'motorcyclist')
+Role.create(name: 'driver')
+Role.create(name: 'patrolman')
+Role.create(name: 'user')
 
-Team.create(name: 'A')
-Team.create(name: 'B')
-Team.create(name: 'C')
-Team.create(name: 'D')
+Team.create(name: 'A') #aguiar
+Team.create(name: 'B') #joheldes
+Team.create(name: 'C') #tarcila
+Team.create(name: 'D') #daniel
 Team.create(name: 'Administrativo')
 Team.create(name: 'Outras Secretarias')
 
@@ -86,9 +88,7 @@ User.create!(username: 'Tito',name: "TITO TAVARES CAVALCANTI JÚNIOR",  team_id:
 User.create!(username: 'Wesley',name: "WESLEY JOSÉ PEREIRA RODRIGUES", team_id: 2,:registration=>"55345", :password=>"123456", :password_confirmation=>"123456")
 
 
-User.find_by(username: 'daltro').user_roles.build(role_id: 1).save
-User.find_by(username: 'douglas').user_roles.build(role_id: 1).save
-User.find_by(username: 'walber').user_roles.build(role_id: 1).save 
+
 
 User.all.each do |user|
   user.user_roles.build(role_id: 4).save

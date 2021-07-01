@@ -6,39 +6,44 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <%= link_to 'Viaturas', cars_path, class:"nav-link" %>
-      </li>
-
-      <li class="nav-item active">
-        <%= link_to 'Serviços', services_path,  class:'nav-link' %>
-      </li>
       
-      <li class="nav-item active">
-        <%= link_to 'Servidores', users_path,  class:'nav-link' %>
-      </li>
-      
-   
       <li class="nav-item active">
         <%= link_to 'PONTO', clock_path,  class:'nav-link' %>
       </li>
+      
+      
+
       <% if current_user.user_admin?  %>
-        <li class="nav-item active">
-          <%= link_to 'Painel de informações', new_article_path,  class:'nav-link' %>
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Administrativo
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to 'Viaturas', cars_path, class:"dropdown-item" %>
+            <%= link_to 'Serviços', services_path,  class:"dropdown-item" %>
+            <%= link_to 'Pessoal', users_path,  class:"dropdown-item" %>
+            <%= link_to 'Inserir Informações', new_article_path,  class:"dropdown-item" %>
+            
+          </div>
         </li>
       <% end %>
       
-
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= @current_user.username.capitalize %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to 'Perfil', user_path(current_user), class:"dropdown-item"  %>
+          <%= link_to 'Solicitar Troca de Serviços', '#', class:"dropdown-item"  %>
+          <%= link_to 'Solicitar Férias', '#', class:"dropdown-item"  %>
+          <%= link_to 'Solicitar Folga', '#', class:"dropdown-item"  %>
+          <div class="dropdown-divider"></div>
+          <%= link_to 'Plantões', '#', class:"dropdown-item"  %>
           <div class="dropdown-divider"></div>
           <%= link_to 'sair', logout_path, method: :delete, data: {confirm: 'Tem certeza ?' }, class:"dropdown-item" %>
         </div>
       </li>
+
     </ul>
   
   </div>
