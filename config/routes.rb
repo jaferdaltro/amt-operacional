@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'supervisions/cars'
+  get 'supervisions/stuffs'
+  get 'supervisions/people'
+  get 'supervisions/division'
+  get 'supervisions/calls'
   resources :groups
   root  'articles#index'
   
