@@ -11,7 +11,7 @@ class ClocksController < ApplicationController
   def clock_in
     @clock = @service.clocks.build(user_id: current_user.id, active: true)
     if @clock.save
-      ClockMailer.receipt(current_user).deliver_now
+      ClockMailer.receipt_get_in(current_user, @clock).deliver_now
       current_user.update_attribute(:work, true)
       flash[:success] = 'Ponto iniciado com sucesso, verifique seu email pra ver o comprovante.'
       redirect_to root_path
@@ -25,6 +25,7 @@ class ClocksController < ApplicationController
   def clock_out
     
     if @clock.update(end_at: Time.now, active: false)
+      ClockMailer.receipt_get_out(current_user, @clock).deliver_now
       current_user.update_attribute(:work, false)
       flash[:success] = 'Ponto finalizado com sucesso, verifique seu email pra ver o comprovante.'
       redirect_to root_path

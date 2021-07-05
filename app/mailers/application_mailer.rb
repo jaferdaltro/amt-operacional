@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'jafer.daltro@insert.uece.br'
+  default from: 'amt.operacional@amt.caucaia.ce.gov.br'
   layout 'mailer'
 end

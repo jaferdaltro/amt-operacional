@@ -5,8 +5,16 @@ class ClockMailer < ApplicationMailer
   #
   #   en.clock_mailer.receipt.subject
   #
-  def receipt(user)
+  def receipt_get_in(user, clock)
     @user = user
-    mail to: user.email, subject: "Comprovante de ponto"
+    @clock = clock
+    mail to: user.email, subject: "Comprovante de entrada em #{l(@clock.created_at), format: :day}"
+
+  end
+
+  def receipt_get_out(user, clock)
+    @user = user
+    @clock = clock
+    mail to: user.email, subject: "Comprovante de saida em #{l(@clock.created_at), format: :day}"
   end
 end
