@@ -2,7 +2,7 @@
 <h3>Entrada</h3>
 <p>Autarquia Municipal de Trânsito de Caucaia</p>
 <p>CNPJ 05.577.643/0001-16</p>
-<p>Caucaia, <%= @clock.created_at %></p>
+<p>Caucaia, <%= l(@clock.created_at, format: :short) %></p>
 <p>Servidor: <%= @user.name %></p>
 
 
