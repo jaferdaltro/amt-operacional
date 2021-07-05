@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # ruby '2.7.1'
 
-gem 'image_processing', '~> 0.2.3'
 gem 'mini_magick', '~> 4.11'
 gem 'active_storage_validations', '~> 0.9.2'
 gem 'bcrypt', '~> 3.1', '>= 3.1.16'
@@ -22,6 +21,7 @@ gem 'simple_form'
 gem "cocoon"
 gem 'font-awesome-rails'
 gem 'pg', '~> 1.2', '>= 1.2.3'
+gem 'image_processing', '~> 1.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
