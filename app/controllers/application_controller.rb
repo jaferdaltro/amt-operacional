@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  def require_supervisor
+    if !(logged_in? && current_user.user_supervisor?)
+      flash[:danger]="Apenas supervisores podem acessar essa página"
+      redirect_to articles_path
+  end
+  end
 end

@@ -35,6 +35,10 @@ class User < ApplicationRecord
   def user_admin?
     self.admin
   end
+
+  def user_supervisor?
+    self.role.id == 1
+  end
   
 
   def remember

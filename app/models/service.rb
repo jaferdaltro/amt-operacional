@@ -1,7 +1,11 @@
 class Service < ApplicationRecord
   has_many :clocks
-  has_many :cars
+  has_many :displacements
+  has_many :stuff_services
+  has_many :cars, through: :displacements
   has_many :users, through: :clocks
+  has_many :stuffs, through: :stuff_services
+
   attr_accessor :team
 
   def current_service(user)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_113925) do
+ActiveRecord::Schema.define(version: 2021_07_05_192347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,17 @@ ActiveRecord::Schema.define(version: 2021_07_01_113925) do
     t.index ["user_id"], name: "index_clocks_on_user_id"
   end
 
+  create_table "displacements", force: :cascade do |t|
+    t.bigint "car_id"
+    t.bigint "service_id"
+    t.integer "initial"
+    t.integer "final"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["car_id"], name: "index_displacements_on_car_id"
+    t.index ["service_id"], name: "index_displacements_on_service_id"
+  end
+
   create_table "frequencies", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "login_time"
@@ -119,8 +130,22 @@ ActiveRecord::Schema.define(version: 2021_07_01_113925) do
   create_table "services", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_services_on_user_id"
+  end
+
+  create_table "stuff_services", force: :cascade do |t|
+    t.bigint "stuff_id"
+    t.bigint "service_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["service_id"], name: "index_stuff_services_on_service_id"
+    t.index ["stuff_id"], name: "index_stuff_services_on_stuff_id"
+  end
+
+  create_table "stuffs", force: :cascade do |t|
+    t.string "name"
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "teams", force: :cascade do |t|
@@ -142,6 +167,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_113925) do
     t.bigint "team_id"
     t.boolean "work", default: false
     t.bigint "role_id"
+    t.string "email"
     t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["team_id"], name: "index_users_on_team_id"
   end
@@ -150,9 +176,12 @@ ActiveRecord::Schema.define(version: 2021_07_01_113925) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "clocks", "services"
   add_foreign_key "clocks", "users"
+  add_foreign_key "displacements", "cars"
+  add_foreign_key "displacements", "services"
   add_foreign_key "frequencies", "users"
   add_foreign_key "items", "cars"
-  add_foreign_key "services", "users"
+  add_foreign_key "stuff_services", "services"
+  add_foreign_key "stuff_services", "stuffs"
   add_foreign_key "users", "roles"
   add_foreign_key "users", "teams"
 end

@@ -1,2 +1,33 @@
-<h1>Supervisions#cars</h1>
-<p>Find me in app/views/supervisions/cars.html.erb</p>
+<div class="card">
+  <div class="card-header">
+    VIATURAS PARA O PLANTÃO DO DIA
+  </div>
+  <div class="card-body">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">VTR/MTR</th>
+        <th scope="col">MODELO</th>
+        <th scope="col">STATUS</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <% @cars.each do |car| %>
+      <tr>
+        <td><%=  car.vtr %></td>
+        <td><%=  car.model %></td>
+        <% if car.status == 0 %>
+          <td><span><i class='fa fa-check'></i></span></td>
+        <% else %>
+          <td><span><i class='fa fa-times'></i></span></td>
+        <% end %>
+          
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+
+  </div>
+</div>

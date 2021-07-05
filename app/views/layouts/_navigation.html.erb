@@ -11,6 +11,21 @@
         <%= link_to 'PONTO', switch_path,  class:'nav-link' %>
       </li>
       
+      <% if current_user.user_supervisor?  %>
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Supervisão
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to 'Pessoal', supervisions_people_path,  class:"dropdown-item" %>
+            <%= link_to 'Viaturas', supervisions_cars_path, class:"dropdown-item" %>
+            <%= link_to 'Material',supervisions_stuffs_path,  class:"dropdown-item" %>
+            <%= link_to 'Atendimentos', '#',  class:"dropdown-item" %>
+            <%= link_to 'Observações', '#',  class:"dropdown-item" %>
+            
+          </div>
+        </li>
+      <% end %>
       
 
       <% if current_user.user_admin?  %>

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
 
 
+
+
   resources :articles
   resources :services, only: [:index, :create, :new, :show]
   resources :users, only: [:new, :create, :show, :index, :edit, :update]

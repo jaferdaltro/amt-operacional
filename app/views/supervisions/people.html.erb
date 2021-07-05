@@ -1,2 +1,57 @@
-<h1>Supervisions#people</h1>
-<p>Find me in app/views/supervisions/people.html.erb</p>
+<div class="card">
+  <div class="card-header">
+    AGENTES PARA O PLANTÃO DO DIA
+  </div>
+  <div class="card-body">
+    <h3 class='text-center'>Equipe do Dia</h3>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Agente</th>
+        <th scope="col">Troca</th>
+        <th scope="col">Presença</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <% @people_team.each do |agent| %>
+      <tr>
+        <td><%=  agent.username.capitalize %></td>
+        <td><%=  agent.username.capitalize %></td>
+        <% if agent.work %>
+          <td><span><i class='fa fa-check'></i></span></td>
+        <% else %>
+          <td><span><i class='fa fa-times'></i></span></td>
+        <% end %>
+          
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <h3 class='text-center'>Equipe de Extra</h3>
+      <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Agente</th>
+        <th scope="col">Presença</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <% @people_team.each do |agent| %>
+      <tr>
+        <td><%=  agent.username.capitalize %></td>
+        <% if agent.work %>
+          <td><span><i class='fa fa-check'></i></span></td>
+        <% else %>
+          <td><span><i class='fa fa-times'></i></span></td>
+        <% end %>
+          
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>
