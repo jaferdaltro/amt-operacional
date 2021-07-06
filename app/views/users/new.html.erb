@@ -1,4 +1,4 @@
-
+<% provide(:title, "Novo usuário") %>
 <div class="card">
   <div class="card-body">  
     <div class="col-lg-12">
@@ -42,8 +42,8 @@
                             <% end %>
                             
                             
-                              <%= form.submit "Enviar" %>
-                            
+                            <%= form.submit "Enviar" %>
+                            <%= link_to 'Cancelar', :back, class: "btn btn-default"%>
                         <% end %>
                     </div>
                 </div>
